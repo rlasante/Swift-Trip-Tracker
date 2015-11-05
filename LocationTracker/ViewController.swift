@@ -7,24 +7,38 @@
 //
 
 import UIKit
+import ReactiveCocoa
 
 class ViewController: UIViewController {
 
   @IBOutlet weak var startButton: UIButton?
   @IBOutlet weak var stopButton: UIButton?
   @IBOutlet weak var speedLabel: UILabel?
+  var tracking = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-    TripManager.sharedInstance.currentSpeedSignal().observeNext { (speed) -> () in
-      self.speedLabel?.text = "\(Int(speed)) MPH"
-    }
+    listenForSpeedChanges()
+    listenForTripCompleted()
   }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  private func listenForSpeedChanges() {
+    TripManager.sharedInstance.currentSpeedSignal()
+      .map { (metersPerSecond) -> Double in
+        metersPerSecond * 2.23694
+      }.observeNext { [weak self] (speed) -> () in
+        self?.speedLabel?.text = "\(Int(speed)) MPH"
+      }
+  }
+
+  private func listenForTripCompleted() {
+    TripManager.sharedInstance.completedTripSignal().observeNext { [weak self] (trip) -> () in
+      self?.performSegueWithIdentifier("mapSegue", sender: trip)
+      self?.stopButton?.hidden = true
+      self?.speedLabel?.hidden = true
+      self?.speedLabel?.text = ""
+      self?.startButton?.hidden = false
+    }
   }
 
   @IBAction func startTracking(sender: UIButton) {
@@ -36,9 +50,16 @@ class ViewController: UIViewController {
 
   @IBAction func stopTracking(sender: UIButton) {
     TripManager.sharedInstance.stopTracking()
-    stopButton?.hidden = true
-    speedLabel?.hidden = true
-    startButton?.hidden = false
+  }
+
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "mapSegue" {
+      let mapViewController = segue.destinationViewController as! MapViewController
+      mapViewController.trip = sender as! Trip
+    }
+  }
+
+  @IBAction func doneWithMapSegue(segue: UIStoryboardSegue) {
   }
 
 }

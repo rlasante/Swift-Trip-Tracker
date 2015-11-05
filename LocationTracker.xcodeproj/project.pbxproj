@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		71CF6C46C449A31362224D9C /* Pods_LocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41E072A5FC8EE40783121550 /* Pods_LocationTracker.framework */; };
+		DF41932C1BE99A940067935D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF41932B1BE99A940067935D /* MapViewController.swift */; };
 		DFDB67141BE6A30300C61938 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDB67131BE6A30300C61938 /* AppDelegate.swift */; };
 		DFDB67161BE6A30300C61938 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDB67151BE6A30300C61938 /* ViewController.swift */; };
 		DFDB67191BE6A30300C61938 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFDB67171BE6A30300C61938 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		20A3403DB52B721ED562CE0E /* Pods-LocationTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationTracker/Pods-LocationTracker.release.xcconfig"; sourceTree = "<group>"; };
 		41E072A5FC8EE40783121550 /* Pods_LocationTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51A04C427B93CD5C9D157657 /* Pods-LocationTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationTracker/Pods-LocationTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		DF41932B1BE99A940067935D /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DFDB67101BE6A30300C61938 /* LocationTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFDB67131BE6A30300C61938 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFDB67151BE6A30300C61938 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -138,14 +140,15 @@
 			isa = PBXGroup;
 			children = (
 				DFDB67131BE6A30300C61938 /* AppDelegate.swift */,
+				DF41932B1BE99A940067935D /* MapViewController.swift */,
 				DFDB67151BE6A30300C61938 /* ViewController.swift */,
+				DFDB67441BE6B01700C61938 /* TripManager.swift */,
+				DFDB674D1BE6D93100C61938 /* Trip.swift */,
 				DFDB67171BE6A30300C61938 /* Main.storyboard */,
 				DFDB671D1BE6A30300C61938 /* Assets.xcassets */,
 				DFDB671F1BE6A30300C61938 /* LaunchScreen.storyboard */,
 				DFDB67221BE6A30300C61938 /* Info.plist */,
 				DFDB671A1BE6A30300C61938 /* LocationTracker.xcdatamodeld */,
-				DFDB67441BE6B01700C61938 /* TripManager.swift */,
-				DFDB674D1BE6D93100C61938 /* Trip.swift */,
 			);
 			path = LocationTracker;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFDB674E1BE6D93100C61938 /* Trip.swift in Sources */,
+				DF41932C1BE99A940067935D /* MapViewController.swift in Sources */,
 				DFDB67451BE6B01700C61938 /* TripManager.swift in Sources */,
 				DFDB67161BE6A30300C61938 /* ViewController.swift in Sources */,
 				DFDB67141BE6A30300C61938 /* AppDelegate.swift in Sources */,

@@ -22,6 +22,7 @@
                                 <rect key="frame" x="195" y="231" width="210" height="137"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.40000000000000002" green="1" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" identifier="start"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="de4-9h-z6r"/>
                                     <constraint firstAttribute="height" constant="137" id="kgO-fE-SSi"/>
@@ -38,6 +39,7 @@
                                 <rect key="frame" x="195" y="403" width="210" height="137"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" identifier="stop"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="9Q6-g6-1MV"/>
                                     <constraint firstAttribute="height" constant="137" id="PLc-JK-e0E"/>
@@ -50,7 +52,7 @@
                                     <action selector="stopTracking:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jzb-kM-0lg"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13 MPH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otE-ZN-w1T">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="13 MPH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otE-ZN-w1T">
                                 <rect key="frame" x="20" y="128" width="560" height="119.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="90"/>
@@ -81,11 +83,87 @@
                         <outlet property="speedLabel" destination="otE-ZN-w1T" id="Q28-qT-44M"/>
                         <outlet property="startButton" destination="6n9-Bw-QbL" id="Iof-6N-srA"/>
                         <outlet property="stopButton" destination="Ga6-r6-gxk" id="a0r-a0-7B9"/>
+                        <segue destination="y5r-F2-dml" kind="showDetail" identifier="mapSegue" id="80w-Aq-9si"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="319" y="362"/>
+            <point key="canvasLocation" x="-60" y="224"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="W7f-Dc-Ndd">
+            <objects>
+                <viewController id="y5r-F2-dml" customClass="MapViewController" customModule="LocationTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wfD-1d-es8"/>
+                        <viewControllerLayoutGuide type="bottom" id="ers-EB-Kop"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cjt-Gc-Eay">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pfI-81-TjC">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Adc-LB-irb">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Done"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="177" y="550" width="46" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="dH8-fQ-R5h" kind="unwind" unwindAction="doneWithMapSegue:" id="stS-6M-QWX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pfI-81-TjC" firstAttribute="leading" secondItem="Cjt-Gc-Eay" secondAttribute="leadingMargin" id="1w4-Hn-VYS"/>
+                            <constraint firstItem="ers-EB-Kop" firstAttribute="top" secondItem="Adc-LB-irb" secondAttribute="bottom" constant="20" id="AKJ-v1-Jmb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pfI-81-TjC" secondAttribute="trailing" id="Cpk-Ol-XrO"/>
+                            <constraint firstItem="pfI-81-TjC" firstAttribute="top" secondItem="Cjt-Gc-Eay" secondAttribute="topMargin" id="GD3-94-Qd7"/>
+                            <constraint firstItem="Adc-LB-irb" firstAttribute="centerX" secondItem="Cjt-Gc-Eay" secondAttribute="centerX" id="Nv7-bN-C8i"/>
+                            <constraint firstItem="Adc-LB-irb" firstAttribute="top" secondItem="pfI-81-TjC" secondAttribute="bottom" constant="14" id="Whv-aK-GRY"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="pfI-81-TjC"/>
+                                <exclude reference="Adc-LB-irb"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="1w4-Hn-VYS"/>
+                                <exclude reference="Cpk-Ol-XrO"/>
+                                <exclude reference="GD3-94-Qd7"/>
+                                <exclude reference="Nv7-bN-C8i"/>
+                                <exclude reference="Whv-aK-GRY"/>
+                                <exclude reference="AKJ-v1-Jmb"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="pfI-81-TjC"/>
+                                <include reference="Adc-LB-irb"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="1w4-Hn-VYS"/>
+                                <include reference="Cpk-Ol-XrO"/>
+                                <include reference="GD3-94-Qd7"/>
+                                <include reference="Nv7-bN-C8i"/>
+                                <include reference="Whv-aK-GRY"/>
+                                <include reference="AKJ-v1-Jmb"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="pfI-81-TjC" id="734-Wa-wfk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Za-FK-ef4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="dH8-fQ-R5h" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="843" y="224"/>
         </scene>
     </scenes>
 </document>
