@@ -108,6 +108,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Adc-LB-irb">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
+                                <accessibility key="accessibilityConfiguration" identifier="done"/>
                                 <state key="normal" title="Done"/>
                                 <variation key="widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="177" y="550" width="46" height="30"/>

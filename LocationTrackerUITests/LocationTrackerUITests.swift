@@ -31,6 +31,16 @@ class LocationTrackerUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+      let startButton = XCUIApplication().buttons.elementMatchingType(.Button, identifier: "start")
+      let stopButton = XCUIApplication().buttons.elementMatchingType(.Button, identifier: "stop")
+      let delayStopExpectation = expectationWithDescription("Delay for pressing stop button")
+
+      startButton.tap()
+      dispatch_after(3, dispatch_get_main_queue()) { () -> Void in
+        stopButton.tap()
+        delayStopExpectation.fulfill()
+      }
+      waitForExpectationsWithTimeout(10, handler: nil)
     }
     
 }

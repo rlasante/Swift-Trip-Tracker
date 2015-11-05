@@ -14,7 +14,7 @@ import ReactiveCocoa
 
 class Trip: NSObject {
 
-  private var points = [CLLocation]()
+  var rawPoints = [CLLocation]()
   var createdAt = NSDate()
 
   override init() {
@@ -38,11 +38,11 @@ class Trip: NSObject {
   }
 
   func addLocation(location: CLLocation) {
-    points.append(location)
+    rawPoints.append(location)
   }
 
   func addLocations(locations: [CLLocation]) {
-    points += locations
+    rawPoints += locations
   }
 
   var locations : [CLLocation] {
@@ -62,7 +62,7 @@ class Trip: NSObject {
     var smoothedPoints = [CLLocation]()
     var distances = [Int: Double?]()
     var totalDistance = 0.0
-    let sortedPoints = points.sort { (firstLocation, secondLocation) -> Bool in
+    let sortedPoints = rawPoints.sort { (firstLocation, secondLocation) -> Bool in
       firstLocation.timestamp.timeIntervalSince1970 < secondLocation.timestamp.timeIntervalSince1970
     }
     for (index, location) in sortedPoints.enumerate() {
@@ -98,7 +98,7 @@ class Trip: NSObject {
   private func frameLocations() -> (topLeft: CLLocationCoordinate2D, center: CLLocationCoordinate2D, bottomRight: CLLocationCoordinate2D) {
     var locations = self.locations
     if locations.isEmpty {
-      locations = self.points
+      locations = self.rawPoints
     }
     var minLat = MAX_COORDINATE
     var minLong = MAX_COORDINATE
